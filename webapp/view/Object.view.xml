@@ -1,0 +1,72 @@
+<mvc:View
+	controllerName="project1.controller.Object"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+
+		<semantic:titleHeading>
+			<Title
+                id="titulo"
+				text="{pelicula>/titulo}"
+				level="H2"/>
+		</semantic:titleHeading>
+
+		<semantic:headerContent>
+            <VBox>
+                <Button press="onNavBack" icon="sap-icon://nav-back"></Button> 
+                <Image width="250px" id="caratula" src="{pelicula>/caratula}" />
+                <Text text="{i18n>objectAnio} {pelicula>/anio}"></Text>
+            </VBox>
+		</semantic:headerContent>
+
+        <semantic:content>
+            <Table
+				id="table"
+				width="auto"
+				items="{/actores}"
+				noDataText="{worklistView>/tableNoDataText}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+					<OverflowToolbar height="auto">
+                        <Title
+                            id="tableHeader"
+                            text="{i18n>objectTableTitle}"
+                            level="H1"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+					<Column id="nameColumn">
+                        <Text text="{i18n>objectNameColumn}"></Text>
+					</Column>
+                    <Column id="surnameColumn">
+                        <Text text="{i18n>objectSurnameColumn}"></Text>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Active">
+						<cells>
+							<ObjectIdentifier
+								title="{nombre}"/>
+                            <ObjectIdentifier
+                                title="{apellidos}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+            </Table>
+        </semantic:content>
+	</semantic:SemanticPage>
+
+</mvc:View>

@@ -1,0 +1,77 @@
+<mvc:View xmlns:microchart="sap.suite.ui.microchart"
+    controllerName="project1.controller.MovieDBList"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page title="{i18n>apiViewTitle}" showNavButton="true"
+		            navButtonPress="onNavBack">
+					<content>
+                        <VBox id="vBox">
+                            <Table id="peliculasAPI" items="{/peliculasAPI}">
+                                <columns>
+                                    <Column>
+                                        <Text text="{i18n>peliculaCaratula}"/>
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>peliculaTitulo}"/>
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>peliculaRating}"/>
+                                    </Column>
+                                    <Column>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Image src="{caratula}" width="25%"/>
+                                            <ObjectIdentifier
+                                                title="{titulo}"
+                                                text="{anio}"/>
+                                            <!--<RatingIndicator
+                                                maxValue="5" 
+                                                tooltip="Rating: {rating}"
+                                                value="{= ${rating} / 2}" 
+                                                displayOnly="true"
+                                            />-->
+                                            <microchart:RadialMicroChart 
+                                                size="S"
+                                                tooltip="Rating: {rating}"
+                                                fraction="{rating}"
+                                                total="10"
+                                                valueColor="{= ${rating} > 7 ? 'Good' : ${rating} > 4 ? 'Critical' : 'Error'}"/>
+                                            <!--<ObjectNumber
+                                                number="{rating}"/>-->
+                                            <Button
+                                                icon="{= ${inMyList} ? 'sap-icon://favorite' : 'sap-icon://unfavorite'}"
+                                                press="setFavorite" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <Bar design="SubHeader">
+                                <contentMiddle>
+                                    <Button
+                                        type="Emphasized" 
+                                        icon="sap-icon://navigation-left-arrow"
+                                        press="onPrevious"
+                                        enabled="{= ${info>/page} > 1}"/>
+                                    <Text text="{info>/page}"></Text>
+                                    <Button 
+                                        type="Emphasized" 
+                                        icon="sap-icon://navigation-right-arrow"
+                                        press="onNext"
+                                        enabled="{= ${info>/totalPages} > ${info>/page}}"/>
+                                </contentMiddle>
+                            </Bar>
+                        </VBox>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

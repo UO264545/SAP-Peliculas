@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+  	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    >
+    <VBox id="form">
+        <f:SimpleForm
+            title="Pelicula"
+            editable="true"
+            layout="ResponsiveGridLayout"
+            columnsM="2"
+        >
+            <f:content>
+                <Label text="{i18n>nuevaPeliculaTitulo}" labelFor="inputTitulo"></Label>
+                <Input id="inputTitulo" required="true"/>
+                <Label text="{i18n>nuevaPeliculaAutor}" labelFor="inputAutor"></Label>
+                <Input id="inputAutor"/>
+                <Label text="{i18n>nuevaPeliculaAnio}" labelFor="inputAnio" required="true"></Label>
+                <Input id="inputAnio"/>
+                <Label text="{i18n>nuevaPeliculaCaratula}" labelFor="inputCaratula" required="true"></Label>
+                <Input id="inputCaratula"/>
+            </f:content>
+        </f:SimpleForm>
+        <Button press=".addFilm" text="{i18n>guardarPelicula}"></Button>
+    </VBox>
+</core:FragmentDefinition>

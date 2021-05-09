@@ -1,0 +1,56 @@
+<mvc:View
+    controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="newPelicula" title="{i18n>title}">
+					<content>
+                        <VBox id="vBox">
+                            <Table id="peliculasTable" items="{/peliculas}">
+                                <headerToolbar>
+                                    <OverflowToolbar height="auto">
+                                        <content>
+                                            <Text text="{i18n>worklistSearchTooltip}"/>
+                                            <SearchField
+                                                id="searchField"
+                                                tooltip="{i18n>worklistSearchTooltip}"
+                                                placeholder="{i18n>worklistSearchPlaceholder}"
+                                                search=".onSearch">
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData
+                                                        maxWidth="200px"
+                                                        priority="NeverOverflow"/>
+                                                </layoutData>
+                                            </SearchField>
+                                            <Button text="{i18n>worklistNewButtonText}" press="showFragment" />
+                                            <Button text="API" press="openAPIView" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                    <columns>
+                                    <Column>
+                                        <Text text="{i18n>peliculaTitulo}"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem
+                                        type="Navigation"
+                                        press=".onPress">
+                                        <cells>
+                                            <ObjectIdentifier
+                                                title="{titulo}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
